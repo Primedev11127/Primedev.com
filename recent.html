@@ -1,0 +1,298 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Recent Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-gold: #ffcc33;
+            --dark-bg: #030a05;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Parallax & Canvas background same as home */
+        .parallax-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('spring.jpg');
+            background-size: cover;
+            z-index: -2;
+        }
+
+        #nature-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .back-nav {
+            margin-bottom: 40px;
+        }
+
+        .btn-back {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover { transform: translateX(-5px); }
+
+        header h2 {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+  header h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        header span { color: var(--accent-gold); }
+
+        /* Projects Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(255, 204, 51, 0.1);
+        }
+
+               .project-img {
+    width: 100%;
+    height: 200px;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    color: var(--accent-gold);
+    font-weight: bold;
+    overflow: hidden; 
+}
+
+
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .project-info p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+        }
+
+        @media (max-width: 600px) {
+            header h2 { font-size: 2rem; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parallax-bg"></div>
+    <canvas id="nature-canvas"></canvas>
+
+    <div class="container">
+        <nav class="back-nav">
+          
+        </nav>
+
+        <header>
+            <h2>My Digital <span>Garden</span></h2>
+        </header>
+ <header>
+            <h3>Recent <span>work</span></h3>
+        </header>
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <div class="project-img"><img src="https://content.jdmagicbox.com/comp/def_content/cyber_cafes/default-cyber-cafes-4.jpg" alt="Zen Growth Tracker Preview"></div>
+                <div class="project-info">
+                      <h3>FRIENDS COMPUTER</h3>
+                    <p>Computer Institute & Lok Mitra Kendra & Cyber Cafe</p>
+                    <div class="tags">
+                        
+                        <a href=" https://friendscybercafe03-create.github.io/cyber-cafe/" style="color: var(--accent-gold); text-decoration: none; font-weight: bold;">Visit Site ? <br> Click here</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFD6zUGR642y9BgHQGN8gY4zgT--U3KZwq2Q&s"></div>
+                <div class="project-info">
+                    <h3>Nature AI Dashboard</h3>
+                    <p>Real-time weather analytics dashboard jo garden maintenance ke liye logic-based insights deta hai.</p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+ <div class="project-card">
+                <div class="project-img"><img src="https://static.vecteezy.com/system/resources/thumbnails/037/918/602/small/ai-generated-beautiful-butterfly-on-blooming-flowers-with-a-blurred-bokeh-background-pastel-peach-colors-banner-with-copy-space-ideal-for-presentations-articles-websites-related-to-nature-photo.jpeg"></div>
+                <div class="project-info">
+                    <h3>Nature AI Dashboard</h3>
+                    <p>Real-time weather analytics dashboard jo garden maintenance ke liye logic-based insights deta hai.</p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+
+ <div class="project-card">
+                <div class="project-img"><img src=""></div>
+                <div class="project-info">
+                    <h3>Nature AI Dashboard</h3>
+                    <p>Real-time weather analytics dashboard jo garden maintenance ke liye logic-based insights deta hai.</p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+ <div class="project-card">
+                <div class="project-img"><img src=""></div>
+                <div class="project-info">
+                    <h3>Nature AI Dashboard</h3>
+                    <p>Real-time weather analytics dashboard jo garden maintenance ke liye logic-based insights deta hai.</p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img"><img src=""></div>
+                <div class="project-info">
+                    <h3>Zen Portfolio</h3>
+                    <p>Minimalist design jisme focus sirf content aur user experience par hai. Pure glassmorphism style.</p>
+                    <div class="tags">
+                        <span class="tag">Creative Motion</span>
+                        <span class="tag">Web Dev</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Same petal animation script for consistency
+        const canvas = document.getElementById('nature-canvas');
+        const ctx = canvas.getContext('2d');
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        let particles = [];
+        const colors = ['#ffcc33', '#ff8c00', '#ffd700', '#ffffff'];
+
+        class Petal {
+            constructor(x, y) {
+                this.x = x || Math.random() * canvas.width;
+                this.y = y || (Math.random() * -canvas.height);
+                this.size = Math.random() * 5 + 3;
+                this.speed = Math.random() * 1.5 + 0.5;
+                this.angle = Math.random() * Math.PI * 2;
+                this.spin = Math.random() * 0.02 - 0.01;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.wind = Math.random() * 1 - 0.5;
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.quadraticCurveTo(this.size, -this.size, this.size * 2, 0);
+                ctx.quadraticCurveTo(this.size, this.size, 0, 0);
+                ctx.fill();
+                ctx.restore();
+            }
+            update() {
+                this.y += this.speed;
+                this.x += this.wind + Math.sin(this.y / 100);
+                this.angle += this.spin;
+                return !(this.y > canvas.height);
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles = particles.filter(p => {
+                const alive = p.update();
+                if (alive) p.draw();
+                return alive;
+            });
+            if (particles.length < 40) particles.push(new Petal());
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
