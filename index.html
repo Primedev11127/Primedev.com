@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRIME DEV | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-blue: #00d4ff; /* Icy Blue */
+            --snow-white: #f0f8ff;
+            --dark-bg: #050b14;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .parallax-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(5, 11, 20, 0.7), rgba(5, 11, 20, 0.8)), 
+                        url('https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+
+        #snow-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 7%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+
+        .logo { 
+            font-weight: 800; 
+            font-size: clamp(2rem, 5vw, 1.8rem);
+            color: white; 
+            text-shadow: 0 0 20px var(--accent-blue); 
+        }
+
+        .btn-container { display: flex; gap: 10px; }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .btn-primary { background: var(--accent-blue); color: #000; border: none; }
+        .btn-secondary { 
+            background: var(--glass); 
+            color: white; 
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+  
+
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .hero h2 {
+            font-size: clamp(2rem, 10vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero span { 
+            color: var(--accent-blue);
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .hero p {
+            max-width: 550px;
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            margin-bottom: 35px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-blue);
+            transform: translateY(-8px);
+        }
+
+        .card h3 { color: var(--accent-blue); margin-bottom: 10px; }
+        .card p { font-size: 0.9rem; opacity: 0.7; }
+
+        @media (max-width: 768px) {
+            .hero { align-items: center; text-align: center; }
+            .hero-actions { justify-content: center; }
+            .btn { width: auto; }
+        }
+
+        @media (max-width: 480px) {
+            .page-wrapper { padding: 15px 5%; }
+            .hero-actions .btn { width: 100%; }
+            .logo { font-size: 1.4rem; }
+            .btn-container { gap: 5px; }
+            .btn { padding: 8px 12px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parallax-bg"></div>
+    <canvas id="snow-canvas"></canvas>
+
+    <div class="page-wrapper">
+        <nav>
+            <div class="logo">PRIME_DEV</div>
+            <div class="btn-container">
+                <a href="#" class="btn btn-secondary">Home</a>
+                <a href="contact.html" class="btn btn-secondary">Contact</a>
+                <a href="#" class="btn btn-primary">Hire Me</a>
+            </div>
+        </nav>
+  
+        <section class="hero">
+            <h2>CODE THAT <br> <span>STAYS COOL</span></h2>
+            <p>Main barf ki tarah vibrant UI aur strong logic ke saath websites build karta hoon.</p>
+            
+            <div class="hero-actions">
+                <a href="2222.html" class="btn btn-primary" style="padding: 15px 30px;">Types of website</a>
+                <a href="recent.html" class="btn btn-secondary" style="padding: 15px 30px;">Recent work</a>
+            </div>
+
+            <div class="services-grid">
+                <div class="card">
+                    <h3>UI/UX Design</h3>
+                    <p>Designed for Humans. <br>Where Beauty Meets Usability. <br>Visual Stories, Seamless Journeys.</p>
+                </div>
+                <div class="card">
+                    <h3>Web Development</h3>
+                    <p>Code the Future. <br>Building the Digital World. <br>From Vision to Viewport.</p>
+                </div>
+                <div class="card">
+                    <h3>Creative Motion</h3>
+                    <p>Ideas that never stand still. <br>Where imagination meets momentum. <br>Art in action.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        let snowParticles = [];
+        let magicParticles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Snowflake {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speed = Math.random() * 1 + 0.5;
+                this.velX = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+            update() {
+                this.y += this.speed;
+                this.x += this.velX;
+                if (this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        class Magic {
+            constructor(x, y) {
+                this.x = x; this.y = y;
+                this.size = Math.random() * 4 + 2;
+                this.speedX = Math.random() * 6 - 3;
+                this.speedY = Math.random() * 6 - 3;
+                this.color = `hsl(${Math.random() * 40 + 180}, 100%, 70%)`;
+                this.life = 1.0;
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                this.life -= 0.02;
+            }
+            draw() {
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.life;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        function init() { for (let i = 0; i < 150; i++) snowParticles.push(new Snowflake()); }
+
+        function createMagic(e) {
+            const x = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+            const y = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+            for (let i = 0; i < 15; i++) magicParticles.push(new Magic(x, y));
+        }
+
+        window.addEventListener('mousedown', createMagic);
+        window.addEventListener('touchstart', createMagic);
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            snowParticles.forEach(p => { p.update(); p.draw(); });
+            magicParticles = magicParticles.filter(p => p.life > 0);
+            magicParticles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
