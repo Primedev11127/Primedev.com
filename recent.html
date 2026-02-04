@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Recent Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Snowy Tech Theme Colors */
+            --accent-blue: #00d4ff; 
+            --accent-gold: #ffcc33; /* Keeping your gold for project highlights */
+            --snow-white: #f0f8ff;
+            --dark-bg: #050b14;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Replaced background with Home Page Theme */
+        .parallax-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(5, 11, 20, 0.7), rgba(5, 11, 20, 0.8)), 
+                        url('https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+
+        #snow-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .back-nav { margin-bottom: 40px; }
+
+        header h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-align: center;
+            text-shadow: 0 0 20px var(--accent-blue);
+        }
+        
+        header h3 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        header span { color: var(--accent-blue); }
+
+        /* Projects Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            overflow: hidden; 
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info { padding: 25px; }
+
+        .project-info h3 {
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .project-info p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .tags { display: flex; gap: 10px; flex-wrap: wrap; }
+
+        .tag {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            header h2 { font-size: 2rem; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parallax-bg"></div>
+    <canvas id="snow-canvas"></canvas>
+
+    <div class="container">
+        <header>
+            <h2>My Digital <span>Garden</span></h2>
+            <h3>Recent <span>work</span></h3>
+        </header>
+
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <div class="project-img"><img src="https://content.jdmagicbox.com/comp/def_content/cyber_cafes/default-cyber-cafes-4.jpg" alt="Work"></div>
+                <div class="project-info">
+                    <h3>FRIENDS COMPUTER</h3>
+                    <p>Computer Institute & Lok Mitra Kendra & Cyber Cafe</p>
+                    <div class="tags">
+                        <a href="https://friendscybercafe03-create.github.io/cyber-cafe/" style="color: var(--accent-blue); text-decoration: none; font-weight: bold;">Visit Site ? <br> Click here</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFD6zUGR642y9BgHQGN8gY4zgT--U3KZwq2Q&s"></div>
+                <div class="project-info">
+                    <h3>Nature AI Dashboard</h3>
+                    <p>Real-time weather analytics dashboard jo garden maintenance ke liye logic-based insights deta hai.</p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img"><img src="https://static.vecteezy.com/system/resources/thumbnails/037/918/602/small/ai-generated-beautiful-butterfly-on-blooming-flowers-with-a-blurred-bokeh-background-pastel-peach-colors-banner-with-copy-space-ideal-for-presentations-articles-websites-related-to-nature-photo.jpeg"></div>
+                <div class="project-info">
+                    <h3>Eco System UI</h3>
+                    <p>High-end visual experience for environmental projects.</p>
+                    <div class="tags">
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">Framer</span>
+                    </div>
+                </div>
+            </div>
+<div class="project-card">
+                <div class="project-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFD6zUGR642y9BgHQGN8gY4zgT--U3KZwq2Q&s"></div>
+                <div class="project-info">
+                    <h3>Nature AI Dashboard 1</h3>
+                    <p>Real-time weather analytics dashboard jo garden maintenance ke liye logic-based insights deta hai.</p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+<div class="project-card">
+                <div class="project-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFD6zUGR642y9BgHQGN8gY4zgT--U3KZwq2Q&s"></div>
+                <div class="project-info">
+                    <h3>Nature AI Dashboard 2</h3>
+                    <p>Real-time weather analytics dashboard jo garden maintenance ke liye logic-based insights deta hai.</p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+<div class="project-card">
+                <div class="project-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFD6zUGR642y9BgHQGN8gY4zgT--U3KZwq2Q&s"></div>
+                <div class="project-info">
+                    <h3>Nature AI Dashboard 3</h3>
+                    <p>Real-time weather analytics dashboard jo garden maintenance ke liye logic-based insights deta hai.</p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let snowParticles = [];
+        let magicParticles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Snowflake {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speed = Math.random() * 1 + 0.5;
+                this.velX = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+            update() {
+                this.y += this.speed;
+                this.x += this.velX;
+                if (this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        class Magic {
+            constructor(x, y) {
+                this.x = x; this.y = y;
+                this.size = Math.random() * 4 + 2;
+                this.speedX = Math.random() * 6 - 3;
+                this.speedY = Math.random() * 6 - 3;
+                this.color = `hsl(${Math.random() * 40 + 180}, 100%, 70%)`;
+                this.life = 1.0;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life -= 0.02;
+            }
+            draw() {
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.life;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < 150; i++) snowParticles.push(new Snowflake());
+        }
+
+        function createMagic(e) {
+            const x = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+            const y = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+            for (let i = 0; i < 15; i++) {
+                magicParticles.push(new Magic(x, y));
+            }
+        }
+
+        window.addEventListener('mousedown', createMagic);
+        window.addEventListener('touchstart', createMagic);
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            snowParticles.forEach(p => { p.update(); p.draw(); });
+            magicParticles = magicParticles.filter(p => p.life > 0);
+            magicParticles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
