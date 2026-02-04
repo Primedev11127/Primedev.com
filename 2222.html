@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Types | Nature-Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-gold: #ffcc33;
+            --accent-blue: #00d4ff; /* Snow theme support */
+            --dark-bg: #050b14; /* Snowy dark background */
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- Snowy Background Styles --- */
+        .parallax-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(5, 11, 20, 0.7), rgba(5, 11, 20, 0.8)), 
+                        url('https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+
+        #snow-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 60px 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Existing Content Styles --- */
+        .back-btn {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 30px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { transform: translateX(-5px); }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--accent-gold);
+            padding-left: 20px;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .type-card {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 5px;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transition: 0.4s;
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 204, 51, 0.05);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(255, 204, 51, 0.2);
+        }
+
+        .type-card:hover::before { transform: scaleX(1); }
+
+        .type-card h2 {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .type-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .container { padding: 40px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parallax-bg"></div>
+    <canvas id="snow-canvas"></canvas>
+
+    <div class="container">
+        <h1>Digital <span style="color: var(--accent-gold);">Ecosystems</span></h1>
+
+        <div class="types-grid">
+            <div class="type-card">
+                <span class="icon">??</span>
+                <h2>Landing Pages</h2>
+                <p>Single-page websites designed to convert visitors into customers with high-impact visuals and sharp messaging.</p>
+            </div>
+
+            <div class="type-card">
+                <span class="icon">??</span>
+                <h2>Corporate Sites</h2>
+                <p>Professional, clean, and structured websites that establish brand authority for businesses and agencies.</p>
+            </div>
+
+            <div class="type-card">
+                <span class="icon">???</span>
+                <h2>E-Commerce</h2>
+                <p>Scalable online stores with seamless payment integration, product management, and a smooth checkout flow.</p>
+            </div>
+
+            <div class="type-card">
+                <span class="icon">??</span>
+                <h2>Portfolio Sites</h2>
+                <p>Personalized spaces for creatives to showcase their work, just like this one! Unique and identity-driven.</p>
+            </div>
+
+            <div class="type-card">
+                <span class="icon">??</span>
+                <h2>Web Applications</h2>
+                <p>Complex, interactive platforms like dashboards, booking systems, or SaaS products with dynamic logic.</p>
+            </div>
+
+            <div class="type-card">
+                <span class="icon">??</span>
+                <h2>Blogs & News</h2>
+                <p>Content-heavy sites focused on readability, SEO, and easy content management (CMS) like WordPress or Sanity.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let snowParticles = [];
+        let magicParticles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Snowflake {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speed = Math.random() * 1 + 0.5;
+                this.velX = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+            update() {
+                this.y += this.speed;
+                this.x += this.velX;
+                if (this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        class Magic {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 4 + 2;
+                this.speedX = Math.random() * 6 - 3;
+                this.speedY = Math.random() * 6 - 3;
+                this.color = `hsl(${Math.random() * 40 + 180}, 100%, 70%)`; 
+                this.life = 1.0;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life -= 0.02;
+            }
+            draw() {
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.life;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < 150; i++) snowParticles.push(new Snowflake());
+        }
+
+        function createMagic(e) {
+            const x = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+            const y = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+            for (let i = 0; i < 15; i++) {
+                magicParticles.push(new Magic(x, y));
+            }
+        }
+
+        window.addEventListener('mousedown', createMagic);
+        window.addEventListener('touchstart', createMagic);
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            snowParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            magicParticles = magicParticles.filter(p => p.life > 0);
+            magicParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
